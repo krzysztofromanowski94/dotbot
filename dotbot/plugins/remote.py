@@ -1,4 +1,5 @@
 import dotbot
+import getpass
 
 
 class Remote(dotbot.Plugin):
@@ -36,4 +37,13 @@ class Remote(dotbot.Plugin):
             if 'password' in host:
                 self._log.warning('remote: password in configuration file. '
                                   'Consider adding ssh-key')
+            if (
+                'addr' in host and
+                'user' not in host
+            ):
+                self._host_list.append({})
+                self._host_list[-1]['addr'] = host['addr']
+                self._host_list[-1][''] = host['addr']
+
+
         return True
